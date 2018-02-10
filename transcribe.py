@@ -28,6 +28,18 @@ import indicoio
 #record to file?
 indicoio.config.api_key = "6e20bd4ee1b0be47f25d0f227578fd14"
 
+#live feed of audio
+#doing on loop
+#store on firebase for real time data, immediately record and put into firebase
+#send to indico
+#display to back
+
+#record a video of the?
+#mapping the progression
+
+#the mood of someones speech can change mid sentence
+
+#live status of peoples emotion
 
 
 #transcribe_file()
@@ -61,4 +73,5 @@ def transcribe_file(speech_file):
         print sentiment
 
 
-transcribe_file("/Users/brianha/Documents/test3.wav")
+
+transcribe_file("/Users/brianha/Documents/test4.wav")

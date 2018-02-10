@@ -12,3 +12,26 @@ Using batched output, plot relevance graphs using pyplot.
 input file -> text transcript
 
 """
+
+import plotly.plotly as py
+import plotly.graph_objs as go 
+#version 2.3
+
+import indicoio
+indicoio.config.api_key = "6e20bd4ee1b0be47f25d0f227578fd14"
+
+
+#identify the important words within a document
+
+# single example
+indicoio.keywords("Some call it the sunshine state", version=2)
+
+# batch example
+x = indicoio.keywords([
+    "Some call it the sunshine state",
+    "Some call it the sunshine state"
+], version=2)
+
+for i in x:
+    for u in i:
+        print(u)
