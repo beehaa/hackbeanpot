@@ -46,17 +46,7 @@ def transcribe_file(speech_file):
         y = y + x
         #get_text_sentiment()
     sentiment = indicoio.sentiment_hq(y)
-    return y + " \n"+str(sentiment)
-
-@app.route('/')
-def index():
-    return "this is the homepage"
-
-#tying a url to your python function
-
-@app.route('/tuna')
-def tuna():
-    return '<h2>Tuna is good</h2>'
+    return "Transcript: "+y + " \n Sentiment:"+str(sentiment)
 
 
 @app.route('/success/')
