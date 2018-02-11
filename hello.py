@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, render_template
 app = Flask(__name__)
 
 #from transcribe import transcribe_file
@@ -9,6 +9,15 @@ import recorder
 #record to file?
 indicoio.config.api_key = "6e20bd4ee1b0be47f25d0f227578fd14"
 
+def sentiment_analysis(text):
+    sentiment = indicoio.sentiment(text)
+    return sentiment
+
+def keywords(text):
+    return indicoio.keywords(text)
+
+def emotion(text):
+    return indicoio.emotion(text)
 
 def transcribe_file(speech_file):
     """Transcribe the given audio file."""
@@ -39,18 +48,28 @@ def transcribe_file(speech_file):
     sentiment = indicoio.sentiment_hq(y)
     return y + " \n"+str(sentiment)
 
+@app.route('/')
+def index():
+    return "this is the homepage"
+
+#tying a url to your python function
+
+@app.route('/tuna')
+def tuna():
+    return '<h2>Tuna is good</h2>'
+
+
+@app.route('/success/')
 @app.route('/success/<name>')
 def success(name):
-   return 'Transcript: %s' % name
+    return render_template('success.html', success_message=name)
 
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
     rec = recorder.Recorder(channels=1)
-    with rec.open('blocking9.wav', 'wb') as recfile:
-        recfile.record(duration=10.0)
-    x = transcribe_file("/Users/brianha/hackbeanpot/blocking9.wav")
-
-
+    with rec.open('block.wav', 'wb') as recfile:
+        recfile.record(duration=15.0)
+    x = transcribe_file("/Users/brianha/hackbeanpot/block.wav")
 
     if request.method == 'POST':
       user = request.form['nm']
@@ -61,3 +80,8 @@ def login():
 
 if __name__ == '__main__':
    app.run(debug = True)
+
+
+#how do i make the text come out nicely
+#include html and css in this file?
+#what else can I do with this data or how can i add different bars?

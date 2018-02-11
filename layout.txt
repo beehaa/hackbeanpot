@@ -1,0 +1,34 @@
+
+import keywords
+
+keywods.func(123)
+
+/
+
+/search
+
+
+app = Flask()
+
+
+@app.route('/', methods=['GET'])
+def index():
+  a = 5
+  func()
+  return render_template('index.html')
+
+
+@app.route('/submit/', methods=['POST'])
+def submit():
+  record_voice()
+  translate_to_text()
+  analyze_text()
+  return text
+
+
+  a = voice_data
+  write(a, 'file.wav')
+
+
+  a = read('file.wav')
+  translate_to_text(a)
