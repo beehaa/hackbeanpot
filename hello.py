@@ -1,8 +1,8 @@
 from flask import Flask, redirect, url_for, request, render_template
+from flask_bootstrap import Bootstrap
 app = Flask(__name__)
-
+bootstrap=Bootstrap(app)
 #from transcribe import transcribe_file
-
 import io
 import indicoio
 import recorder
